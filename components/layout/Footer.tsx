@@ -18,29 +18,29 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 text-slate-400 text-sm">
+    <footer className="bg-black border-t border-white/[0.08] text-zinc-400 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-white/[0.08]">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 to-indigo-400 flex items-center justify-center text-white shadow-md shadow-primary-500/25">
+              <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white shadow-lg backdrop-blur-xl">
                 <Camera className="w-5 h-5" />
               </div>
               <span className="text-xl font-bold tracking-tight text-white font-display">
-                Pixel<span className="text-primary-400">Prize</span>
+                Pixel<span className="text-primary-300">Prize</span>
               </span>
             </Link>
-            <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
+            <p className="text-zinc-400 text-xs leading-relaxed max-w-sm">
               The world&apos;s leading multi-tenant photography competition platform. Empowering global photographic societies to host prestigious awards powered by AI preliminary evaluation and verified master juror panels.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#09090b] border border-white/[0.08] text-xs text-zinc-300">
                 <Shield className="w-3.5 h-3.5 text-emerald-400" />
                 <span>EXIF Verified</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">
-                <Sparkles className="w-3.5 h-3.5 text-primary-400" />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#09090b] border border-white/[0.08] text-xs text-zinc-300">
+                <Sparkles className="w-3.5 h-3.5 text-primary-300" />
                 <span>AI Vision Engine</span>
               </div>
             </div>
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/winners" className="hover:text-white transition-colors flex items-center gap-1.5">
                   <span>Hall of Fame</span>
-                  <span className="px-1.5 py-0.2 bg-amber-500/20 text-amber-300 text-[10px] rounded">New</span>
+                  <span className="px-1.5 py-0.2 bg-amber-400/20 text-amber-300 text-[10px] rounded">New</span>
                 </Link>
               </li>
               <li>
@@ -98,7 +98,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/admin" className="hover:text-white transition-colors text-primary-400/90 font-medium">
+                <Link href="/admin" className="hover:text-white transition-colors text-primary-300/90 font-medium">
                   Admin Control Panel
                 </Link>
               </li>
@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider">
               Curator Brief
             </h4>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-400">
               Receive notifications for upcoming competition deadlines and jury analyses.
             </p>
             <form onSubmit={handleSubscribe} className="space-y-2">
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
                   placeholder="photographer@domain.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full bg-[#09090b] border border-white/[0.08] rounded-xl px-3 py-2 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   required
                 />
               </div>
@@ -142,7 +142,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <p>© {new Date().getFullYear()} Pixel-Prize Platform Inc. All photographic copyrights remain with respective artists.</p>
           <div className="flex items-center gap-6">
             <Link href="/about" className="hover:text-white transition-colors">

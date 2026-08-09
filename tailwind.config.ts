@@ -77,12 +77,12 @@ const config: Config = {
           600: "#92400E",
         },
         dark: {
-          950: "#07090E",
-          900: "#0B0F19",
-          850: "#111726",
-          800: "#161F33",
-          750: "#1E293B",
-          700: "#293548",
+          950: "#000000",
+          900: "#050505",
+          850: "#09090b",
+          800: "#121215",
+          750: "#18181b",
+          700: "#27272a",
         }
       },
       borderRadius: {
@@ -95,10 +95,10 @@ const config: Config = {
         display: ["var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {
-        'glow': '0 0 35px -5px rgba(99, 102, 241, 0.3)',
-        'glow-gold': '0 0 35px -5px rgba(245, 158, 11, 0.4)',
-        'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.15)',
-        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+        'glow': '0 0 45px -5px rgba(99, 102, 241, 0.35)',
+        'glow-gold': '0 0 45px -5px rgba(245, 158, 11, 0.45)',
+        'card-hover': '0 20px 40px -10px rgba(0, 0, 0, 0.85)',
+        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
       },
       keyframes: {
         "accordion-down": {

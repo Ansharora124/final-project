@@ -41,16 +41,16 @@ export const AdminSidebar: React.FC = () => {
   return (
     <>
       {/* Mobile Toggle Button */}
-      <div className="lg:hidden flex items-center justify-between p-4 bg-slate-900 border-b border-slate-800">
+      <div className="lg:hidden flex items-center justify-between p-4 bg-black border-b border-white/[0.08]">
         <Link href="/admin" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-primary-500/20 text-primary-300 flex items-center justify-center">
             <Shield className="w-4 h-4" />
           </div>
           <span className="font-bold text-white text-sm">Admin Control Suite</span>
         </Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+          className="p-2 rounded-xl bg-[#09090b] border border-white/[0.08] text-zinc-300 hover:text-white"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -59,22 +59,22 @@ export const AdminSidebar: React.FC = () => {
       {/* Sidebar Container */}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-40 w-64 bg-slate-950 border-r border-slate-800/80 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:h-screen',
+          'fixed inset-y-0 left-0 z-40 w-64 bg-black border-r border-white/[0.08] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:h-screen',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex flex-col h-full">
           {/* Brand Header */}
-          <div className="p-6 border-b border-slate-900">
+          <div className="p-6 border-b border-white/[0.08]">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-primary-500/20">
+              <div className="w-9 h-9 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white shadow-lg backdrop-blur-xl">
                 <Shield className="w-4 h-4" />
               </div>
               <div>
                 <span className="font-bold text-white tracking-tight text-base font-display">
-                  Pixel<span className="text-primary-400">Prize</span>
+                  Pixel<span className="text-primary-300">Prize</span>
                 </span>
-                <span className="block text-[10px] text-primary-400 font-mono">
+                <span className="block text-[10px] text-primary-300 font-mono">
                   Multi-Tenant Admin
                 </span>
               </div>
@@ -86,7 +86,7 @@ export const AdminSidebar: React.FC = () => {
             <Link
               href="/admin/competitions/create"
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-primary-600 hover:bg-primary-500 text-white text-xs font-semibold shadow-md shadow-primary-500/20 transition-all"
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-2xl bg-primary-600 hover:bg-primary-500 text-white text-xs font-semibold shadow-lg shadow-primary-600/30 transition-all"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Competition</span>
@@ -95,7 +95,7 @@ export const AdminSidebar: React.FC = () => {
 
           {/* Navigation */}
           <div className="p-4 flex-1 space-y-0.5 overflow-y-auto">
-            <p className="px-3 py-1.5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+            <p className="px-3 py-1.5 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
               Administration
             </p>
             {NAV_ITEMS.map((item) => {
@@ -110,16 +110,16 @@ export const AdminSidebar: React.FC = () => {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    'flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium transition-all group',
+                    'flex items-center gap-3 px-3.5 py-2 rounded-2xl text-xs font-medium transition-all group',
                     isActive
                       ? 'bg-primary-500/15 text-primary-300 font-semibold border border-primary-500/30'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                      : 'text-zinc-400 hover:text-white hover:bg-[#09090b]'
                   )}
                 >
                   <Icon
                     className={cn(
                       'w-4 h-4 transition-colors',
-                      isActive ? 'text-primary-400' : 'text-slate-400 group-hover:text-slate-200'
+                      isActive ? 'text-primary-300' : 'text-zinc-400 group-hover:text-zinc-200'
                     )}
                   />
                   <span>{item.label}</span>
@@ -129,8 +129,8 @@ export const AdminSidebar: React.FC = () => {
           </div>
 
           {/* Tenant Status Footer */}
-          <div className="p-4 border-t border-slate-900 bg-slate-950/60">
-            <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+          <div className="p-4 border-t border-white/[0.08] bg-[#050505]">
+            <div className="p-2.5 rounded-2xl bg-[#09090b] border border-white/[0.08] flex items-center justify-between">
               <div>
                 <p className="text-[11px] font-bold text-white">Active Tenant</p>
                 <p className="text-[10px] text-emerald-400 flex items-center gap-1">
@@ -138,7 +138,7 @@ export const AdminSidebar: React.FC = () => {
                   Pixel-Prize Global
                 </p>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+              <span className="text-[10px] px-2 py-0.5 rounded-lg bg-black border border-white/[0.08] text-zinc-400 font-mono">
                 SuperAdmin
               </span>
             </div>
@@ -149,7 +149,7 @@ export const AdminSidebar: React.FC = () => {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-30 bg-slate-950/80 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-30 bg-black/80 backdrop-blur-md lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}

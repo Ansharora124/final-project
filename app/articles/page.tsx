@@ -37,20 +37,20 @@ export default function ArticlesPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full space-y-10">
         {/* Page Header */}
         <div className="space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 text-xs font-semibold text-primary-300">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-primary-300 backdrop-blur-xl">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Juror Insights & Technique Articles</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-display text-white">
             Photography Guides & Tutorials
           </h1>
-          <p className="text-sm text-slate-400 leading-relaxed">
+          <p className="text-sm text-zinc-400 leading-relaxed">
             Learn composition tension, ethical fieldcraft, dynamic range calibration, and studio lighting directly from our competition jurors and grand laureates.
           </p>
         </div>
@@ -62,10 +62,10 @@ export default function ArticlesPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-2xl text-xs font-medium whitespace-nowrap transition-all ${
                   selectedCategory === cat
-                    ? 'bg-primary-600 text-white font-semibold shadow-md shadow-primary-600/30'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                    ? 'bg-white/20 text-white font-bold border border-white/30 shadow-lg backdrop-blur-xl'
+                    : 'bg-[#09090b] text-zinc-400 hover:text-white border border-white/[0.08]'
                 }`}
               >
                 {cat}

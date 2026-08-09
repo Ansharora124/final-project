@@ -1,8 +1,6 @@
 {
-  "/page": "app/page.js",
   "/competitions/page": "app/competitions/page.js",
-  "/winners/page": "app/winners/page.js",
-  "/gallery/page": "app/gallery/page.js",
-  "/about/page": "app/about/page.js",
-  "/articles/page": "app/articles/page.js"
+  "/page": "app/page.js",
+  "/login/page": "app/login/page.js",
+  "/winners/page": "app/winners/page.js"
 }

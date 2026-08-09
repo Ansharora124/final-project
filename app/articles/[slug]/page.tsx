@@ -21,7 +21,7 @@ export default function ArticleDetailPage() {
 
   if (!article) {
     return (
-      <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+      <div className="min-h-screen flex flex-col bg-black text-white">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
           <AlertCircle className="w-12 h-12 text-rose-400 mb-3" />
@@ -43,25 +43,25 @@ export default function ArticleDetailPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-10">
+      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full space-y-10">
         {/* Navigation & Header */}
         <div className="space-y-4">
           <Link
             href="/articles"
-            className="text-xs text-primary-400 hover:text-primary-300 transition-colors flex items-center gap-1 font-mono"
+            className="text-xs text-primary-300 hover:text-primary-200 transition-colors flex items-center gap-1 font-mono"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to All Articles</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/15 text-primary-300 border border-primary-500/30">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-primary-300 border border-white/20">
               {article.category}
             </span>
-            <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
+            <div className="flex items-center gap-2 text-xs text-zinc-400 font-mono">
               <span className="flex items-center gap-1">
                 <Calendar className="w-3.5 h-3.5" />
                 {formatDate(article.publishedAt)}
@@ -79,17 +79,17 @@ export default function ArticleDetailPage() {
           </h1>
 
           {/* Author Card & Share Button */}
-          <div className="flex items-center justify-between pt-4 pb-2 border-y border-slate-800">
+          <div className="flex items-center justify-between pt-4 pb-2 border-y border-white/[0.08]">
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={article.author.avatar}
                 alt={article.author.name}
-                className="w-11 h-11 rounded-xl object-cover ring-2 ring-primary-500/30"
+                className="w-11 h-11 rounded-2xl object-cover ring-2 ring-primary-500/30"
               />
               <div>
                 <h4 className="text-sm font-bold text-white">{article.author.name}</h4>
-                <p className="text-xs text-primary-400 font-medium">{article.author.role}</p>
+                <p className="text-xs text-primary-300 font-medium">{article.author.role}</p>
               </div>
             </div>
 
@@ -105,7 +105,7 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Hero Article Image */}
-        <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden bg-slate-900 border border-slate-800">
+        <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden bg-[#09090b] border border-white/[0.08] shadow-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={article.coverImage}
@@ -115,8 +115,8 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Article Body Content */}
-        <div className="prose prose-invert prose-slate max-w-none space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed">
-          <p className="text-lg text-slate-200 font-medium leading-relaxed border-l-2 border-primary-500 pl-4">
+        <div className="prose prose-invert prose-zinc max-w-none space-y-6 text-sm sm:text-base text-zinc-300 leading-relaxed">
+          <p className="text-lg text-zinc-200 font-medium leading-relaxed border-l-2 border-primary-400 pl-4">
             {article.excerpt}
           </p>
 
@@ -131,7 +131,7 @@ export default function ArticleDetailPage() {
               }
               if (paragraph.startsWith('- ')) {
                 return (
-                  <ul key={idx} className="list-disc list-inside space-y-1 text-slate-300">
+                  <ul key={idx} className="list-disc list-inside space-y-1 text-zinc-300">
                     {paragraph.split('\n').map((item, itemIdx) => (
                       <li key={itemIdx}>{item.replace('- ', '')}</li>
                     ))}
@@ -139,7 +139,7 @@ export default function ArticleDetailPage() {
                 );
               }
               return (
-                <p key={idx} className="text-slate-300 leading-relaxed">
+                <p key={idx} className="text-zinc-300 leading-relaxed">
                   {paragraph}
                 </p>
               );
@@ -148,12 +148,12 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Tags */}
-        <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center gap-2">
-          <Tag className="w-4 h-4 text-slate-400 mr-1" />
+        <div className="pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-2">
+          <Tag className="w-4 h-4 text-zinc-400 mr-1" />
           {article.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300"
+              className="px-3 py-1 rounded-xl bg-[#09090b] border border-white/[0.08] text-xs text-zinc-300"
             >
               #{tag}
             </span>

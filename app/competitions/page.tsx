@@ -74,20 +74,20 @@ export default function CompetitionsPage() {
   }, [activeTab, selectedCategory, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-10">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full space-y-10">
         {/* Page Header Banner */}
         <div className="space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 text-xs font-semibold text-primary-300">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-primary-300 backdrop-blur-xl">
             <Trophy className="w-3.5 h-3.5" />
             <span>Open Calls & Global Awards</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-display text-white">
             Explore Competitions
           </h1>
-          <p className="text-sm text-slate-400 leading-relaxed">
+          <p className="text-sm text-zinc-400 leading-relaxed">
             Discover active, jury-reviewed photography contests. Submit your single best photograph per competition and gain recognition from international jurors.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function CompetitionsPage() {
         </div>
 
         {/* Search & Filter Controls Bar */}
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-4 rounded-3xl bg-[#09090b] border border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 backdrop-blur-xl shadow-xl">
           <div className="lg:col-span-2">
             <Input
               placeholder="Search by contest title, theme, or organization..."

@@ -43,21 +43,21 @@ export default function HomePage() {
   ).slice(0, 4);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-primary-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
-        {/* Background Ambient Glows & Patterns */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-600/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+      <section className="relative pt-28 pb-24 lg:pt-36 lg:pb-32 overflow-hidden bg-black">
+        {/* Deep Ethereal Ambient Radial Glows & Grid Pattern */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary-600/15 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             {/* Top Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-semibold text-primary-300 shadow-xl backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-primary-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-primary-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-xl">
+              <Sparkles className="w-3.5 h-3.5 text-primary-300 animate-pulse" />
               <span>Multi-Tenant Photography Competition Infrastructure</span>
             </div>
 
@@ -68,7 +68,7 @@ export default function HomePage() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
               The premier platform where global photographic societies host prestigious contests.
               Powered by deep vision AI preliminary evaluation and verified master juror panels.
             </p>
@@ -88,15 +88,15 @@ export default function HomePage() {
             </div>
 
             {/* Multi-Tenant Badges */}
-            <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
-              <span className="font-semibold uppercase tracking-wider text-slate-400">
+            <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
+              <span className="font-semibold uppercase tracking-wider text-zinc-500">
                 Partnered Organizations:
               </span>
               {MOCK_TENANTS.map((t) => (
-                <div key={t.id} className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                <div key={t.id} className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#09090b] border border-white/[0.08]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={t.logo} alt={t.name} className="w-4 h-4 rounded object-cover" />
-                  <span className="text-slate-300 font-medium">{t.name}</span>
+                  <span className="text-zinc-300 font-medium">{t.name}</span>
                 </div>
               ))}
             </div>
@@ -105,24 +105,24 @@ export default function HomePage() {
       </section>
 
       {/* Platform Statistics Section */}
-      <section className="border-y border-slate-900 bg-slate-950/60 py-12 relative">
+      <section className="border-y border-white/[0.08] bg-[#050505] py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60 space-y-1">
+            <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
               <p className="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">50+</p>
-              <p className="text-xs text-slate-400 font-medium">Global Competitions</p>
+              <p className="text-xs text-zinc-400 font-medium">Global Competitions</p>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60 space-y-1">
-              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-primary-400 tracking-tight">12,000+</p>
-              <p className="text-xs text-slate-400 font-medium">Verified Photographers</p>
+            <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
+              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-primary-300 tracking-tight">12,000+</p>
+              <p className="text-xs text-zinc-400 font-medium">Verified Photographers</p>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60 space-y-1">
+            <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
               <p className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 tracking-tight">38,000+</p>
-              <p className="text-xs text-slate-400 font-medium">Curated Submissions</p>
+              <p className="text-xs text-zinc-400 font-medium">Curated Submissions</p>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60 space-y-1">
+            <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
               <p className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 tracking-tight">150+</p>
-              <p className="text-xs text-slate-400 font-medium">International Jurors</p>
+              <p className="text-xs text-zinc-400 font-medium">International Jurors</p>
             </div>
           </div>
         </div>
@@ -132,14 +132,14 @@ export default function HomePage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-primary-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-semibold text-primary-300 uppercase tracking-wider">
               <Flame className="w-4 h-4" />
               <span>Current Contests</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">
               Active Photography Competitions
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-zinc-400 mt-1">
               Strict 1 photo submission per entrant per competition.
             </p>
           </div>
@@ -159,16 +159,16 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-slate-900/40 border-y border-slate-900 relative">
+      <section className="py-20 bg-[#050505] border-y border-white/[0.08] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-semibold text-primary-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-primary-300 uppercase tracking-wider">
               System Architecture
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
               How Pixel-Prize Works
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
               A transparent, two-stage evaluation pipeline combining state-of-the-art vision algorithms with seasoned jury expertise.
             </p>
           </div>
@@ -216,20 +216,20 @@ export default function HomePage() {
               return (
                 <div
                   key={item.step}
-                  className="p-6 rounded-3xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-4 group"
+                  className="p-6 rounded-3xl bg-[#09090b] border border-white/[0.08] hover:border-white/20 transition-all space-y-4 group backdrop-blur-xl shadow-lg"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-primary-500/10 border border-primary-500/20 text-primary-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 text-primary-300 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xl font-extrabold font-mono text-slate-400">
+                    <span className="text-xl font-extrabold font-mono text-zinc-500">
                       {item.step}
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-white group-hover:text-primary-300 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
+                  <p className="text-xs text-zinc-400 leading-relaxed">{item.description}</p>
                 </div>
               );
             })}
@@ -241,14 +241,14 @@ export default function HomePage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-primary-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-semibold text-primary-300 uppercase tracking-wider">
               <ImageIcon className="w-4 h-4" />
               <span>Curated Visuals</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">
               Featured Master Gallery
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-zinc-400 mt-1">
               Click any photograph to inspect shot metadata and camera settings.
             </p>
           </div>
@@ -268,7 +268,7 @@ export default function HomePage() {
       </section>
 
       {/* Winner Spotlight Section */}
-      <section className="py-20 bg-slate-900/30 border-y border-slate-900 relative">
+      <section className="py-20 bg-[#050505] border-y border-white/[0.08] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
@@ -279,7 +279,7 @@ export default function HomePage() {
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">
                 Recent Award Laureates
               </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              <p className="text-xs sm:text-sm text-zinc-400 mt-1">
                 Celebrating exceptional visual excellence from the Nature Cup 2026.
               </p>
             </div>
@@ -303,14 +303,14 @@ export default function HomePage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-primary-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-semibold text-primary-300 uppercase tracking-wider">
               <Sparkles className="w-4 h-4" />
               <span>Jury Insights & Tutorials</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">
               Mastering the Lens
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-zinc-400 mt-1">
               Field guides, lighting setups, and juror advice to elevate your competition submissions.
             </p>
           </div>

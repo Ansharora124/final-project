@@ -43,24 +43,24 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 py-12">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 pt-28 pb-12">
         <div className="w-full max-w-lg space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary-600 to-indigo-400 flex items-center justify-center text-white mx-auto shadow-lg shadow-primary-500/25">
+            <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white mx-auto shadow-lg backdrop-blur-xl">
               <Camera className="w-6 h-6" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
               Join Pixel-Prize
             </h1>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-400">
               Submit your work, get AI preliminary feedback, and compete for international awards.
             </p>
           </div>
 
-          <form onSubmit={handleRegister} className="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
+          <form onSubmit={handleRegister} className="p-6 sm:p-8 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-4 shadow-2xl backdrop-blur-xl">
             <Input
               label="Full Name"
               placeholder="e.g. Alex Rivera"
@@ -109,15 +109,15 @@ export default function RegisterPage() {
             />
 
             <div className="pt-2">
-              <label className="flex items-start gap-2 cursor-pointer select-none text-xs text-slate-300">
+              <label className="flex items-start gap-2 cursor-pointer select-none text-xs text-zinc-300">
                 <input
                   type="checkbox"
                   checked={agreed}
                   onChange={(e) => setAgreed(e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded border-slate-700 bg-slate-950 text-primary-600 focus:ring-primary-500"
+                  className="mt-1 w-4 h-4 rounded border-zinc-700 bg-black text-primary-600 focus:ring-primary-500"
                 />
                 <span>
-                  I agree to the <Link href="/about" className="text-primary-400 underline">Terms of Service</Link>, and certify that all photographs I submit are my own authentic copyrighted creations.
+                  I agree to the <Link href="/about" className="text-primary-300 underline">Terms of Service</Link>, and certify that all photographs I submit are my own authentic copyrighted creations.
                 </span>
               </label>
             </div>
@@ -133,9 +133,9 @@ export default function RegisterPage() {
               Create Account
             </Button>
 
-            <div className="pt-4 border-t border-slate-800/80 text-center text-xs text-slate-400">
+            <div className="pt-4 border-t border-white/[0.06] text-center text-xs text-zinc-400">
               Already have an account?{' '}
-              <Link href="/login" className="text-primary-400 hover:text-primary-300 font-semibold">
+              <Link href="/login" className="text-primary-300 hover:text-primary-200 font-semibold">
                 Sign In
               </Link>
             </div>

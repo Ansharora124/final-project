@@ -30,12 +30,12 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onSelect, className
     <div
       onClick={() => onSelect?.(photo)}
       className={cn(
-        'group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800/80 cursor-pointer transition-all duration-300 hover:border-slate-700 hover:shadow-2xl hover:-translate-y-1',
+        'group relative rounded-3xl overflow-hidden bg-[#09090b] border border-white/[0.08] cursor-pointer transition-all duration-300 hover:border-white/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.85)] hover:-translate-y-1',
         className
       )}
     >
       {/* Photo Image */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-black">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photo.imageUrl}
@@ -44,17 +44,17 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onSelect, className
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between opacity-90 group-hover:opacity-100 transition-opacity">
           {photo.award ? (
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/90 text-slate-950 shadow-md backdrop-blur-md flex items-center gap-1">
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-amber-400 text-black shadow-md backdrop-blur-md flex items-center gap-1">
               <Award className="w-3 h-3" />
               <span>{photo.award}</span>
             </span>
           ) : (
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-950/70 text-slate-300 backdrop-blur-md border border-white/10">
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/70 text-zinc-300 backdrop-blur-md border border-white/10">
               {photo.category}
             </span>
           )}
@@ -65,7 +65,7 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onSelect, className
               'p-2 rounded-full backdrop-blur-md border transition-all duration-200',
               hasLiked
                 ? 'bg-rose-500/90 border-rose-400 text-white scale-110'
-                : 'bg-slate-950/60 border-white/10 text-white hover:bg-slate-900/80 hover:text-rose-400'
+                : 'bg-black/60 border-white/15 text-white hover:bg-black/90 hover:text-rose-400'
             )}
             aria-label="Like photo"
           >
@@ -76,9 +76,9 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onSelect, className
         {/* Bottom Details Overlay on Hover */}
         <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 text-white">
           <p className="text-xs text-primary-300 font-medium mb-0.5">{photo.competitionTitle}</p>
-          <h4 className="text-sm font-bold truncate">{photo.title}</h4>
+          <h4 className="text-sm font-bold truncate text-white">{photo.title}</h4>
 
-          <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-white/10 text-xs text-slate-300">
+          <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-white/10 text-xs text-zinc-300">
             <div className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -86,16 +86,16 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ photo, onSelect, className
                 alt={photo.photographerName}
                 className="w-5 h-5 rounded-full object-cover ring-1 ring-white/30"
               />
-              <span className="truncate max-w-[120px]">{photo.photographerName}</span>
+              <span className="truncate max-w-[120px] text-white/90">{photo.photographerName}</span>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-[11px] text-slate-400">
+            <div className="flex items-center gap-3 font-mono text-[11px] text-zinc-400">
               <span className="flex items-center gap-1">
                 <Heart className="w-3 h-3 text-rose-400" />
                 {likes}
               </span>
               <span className="flex items-center gap-1">
-                <Eye className="w-3 h-3 text-slate-400" />
+                <Eye className="w-3 h-3 text-zinc-400" />
                 {photo.views}
               </span>
             </div>

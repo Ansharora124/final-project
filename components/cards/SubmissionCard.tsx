@@ -12,10 +12,10 @@ interface SubmissionCardProps {
 
 export const SubmissionCard: React.FC<SubmissionCardProps> = ({ submission }) => {
   return (
-    <div className="bg-slate-900 rounded-2xl border border-slate-800 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 hover:border-slate-700 transition-all group">
+    <div className="bg-[#09090b]/95 rounded-3xl border border-white/[0.08] p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 hover:border-white/20 transition-all group backdrop-blur-xl shadow-xl">
       {/* Left Thumbnail and Details */}
       <div className="flex items-center gap-4 min-w-0">
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-slate-950 shrink-0">
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-black shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={submission.thumbnailUrl}
@@ -23,7 +23,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({ submission }) =>
             className="w-full h-full object-cover group-hover:scale-105 transition-transform"
           />
           {submission.winnerRank && (
-            <div className="absolute top-1 left-1 bg-amber-500 text-slate-950 p-1 rounded-md">
+            <div className="absolute top-1 left-1 bg-amber-400 text-black p-1 rounded-lg font-bold">
               <Award className="w-3 h-3" />
             </div>
           )}
@@ -31,18 +31,18 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({ submission }) =>
 
         <div className="space-y-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold text-primary-400 uppercase tracking-wider">
+            <span className="text-[11px] font-semibold text-primary-300 uppercase tracking-wider">
               {submission.competitionTitle}
             </span>
           </div>
           <h4 className="text-base font-bold text-white truncate">{submission.title}</h4>
-          <div className="flex items-center gap-3 text-xs text-slate-400">
+          <div className="flex items-center gap-3 text-xs text-zinc-400">
             <span className="flex items-center gap-1">
               <Calendar className="w-3.5 h-3.5" />
               {formatDate(submission.submittedAt)}
             </span>
             <span>•</span>
-            <span className="font-mono text-slate-300">
+            <span className="font-mono text-zinc-300">
               {submission.exif.camera.split(' ')[0]} {submission.exif.lens.split(' ')[0]}
             </span>
           </div>

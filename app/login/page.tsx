@@ -47,34 +47,34 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-primary-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 py-12">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 pt-28 pb-12">
         <div className="w-full max-w-md space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary-600 to-indigo-400 flex items-center justify-center text-white mx-auto shadow-lg shadow-primary-500/25">
+            <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white mx-auto shadow-lg backdrop-blur-xl">
               <Camera className="w-6 h-6" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
               Welcome Back
             </h1>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-400">
               Sign in to manage submissions, review entries, or coordinate contests.
             </p>
           </div>
 
-          {/* Quick Demo Role Selectors (Very helpful for pairwise evaluation) */}
-          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
-            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center">
+          {/* Quick Demo Role Selectors */}
+          <div className="p-4 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-2.5 shadow-xl backdrop-blur-xl">
+            <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider text-center">
               Quick Switch Demo Roles
             </p>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => handleQuickRoleLogin('user')}
-                className="p-2 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50 hover:bg-emerald-500/10 text-center transition-all text-xs font-semibold text-slate-200 flex flex-col items-center gap-1"
+                className="p-2.5 rounded-2xl bg-black border border-white/[0.08] hover:border-emerald-500/50 hover:bg-emerald-500/10 text-center transition-all text-xs font-semibold text-zinc-200 flex flex-col items-center gap-1"
               >
                 <User className="w-4 h-4 text-emerald-400" />
                 <span>Photographer</span>
@@ -82,7 +82,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleQuickRoleLogin('judge')}
-                className="p-2 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 hover:bg-amber-500/10 text-center transition-all text-xs font-semibold text-slate-200 flex flex-col items-center gap-1"
+                className="p-2.5 rounded-2xl bg-black border border-white/[0.08] hover:border-amber-500/50 hover:bg-amber-500/10 text-center transition-all text-xs font-semibold text-zinc-200 flex flex-col items-center gap-1"
               >
                 <Gavel className="w-4 h-4 text-amber-400" />
                 <span>Judge</span>
@@ -90,16 +90,16 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleQuickRoleLogin('admin')}
-                className="p-2 rounded-xl bg-slate-950 border border-slate-800 hover:border-primary-500/50 hover:bg-primary-500/10 text-center transition-all text-xs font-semibold text-slate-200 flex flex-col items-center gap-1"
+                className="p-2.5 rounded-2xl bg-black border border-white/[0.08] hover:border-primary-500/50 hover:bg-primary-500/10 text-center transition-all text-xs font-semibold text-zinc-200 flex flex-col items-center gap-1"
               >
-                <Shield className="w-4 h-4 text-primary-400" />
+                <Shield className="w-4 h-4 text-primary-300" />
                 <span>Admin</span>
               </button>
             </div>
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleLogin} className="p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
+          <form onSubmit={handleLogin} className="p-6 sm:p-8 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-4 shadow-2xl backdrop-blur-xl">
             <Input
               label="Email Address"
               type="email"
@@ -112,12 +112,12 @@ export default function LoginPage() {
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300">
                   Password
                 </label>
                 <Link
                   href="/forgot-password"
-                  className="text-xs text-primary-400 hover:text-primary-300 font-medium"
+                  className="text-xs text-primary-300 hover:text-primary-200 font-medium"
                 >
                   Forgot password?
                 </Link>
@@ -133,12 +133,12 @@ export default function LoginPage() {
             </div>
 
             <div className="flex items-center justify-between pt-1">
-              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-slate-300">
+              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-zinc-300">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-slate-700 bg-slate-950 text-primary-600 focus:ring-primary-500"
+                  className="w-4 h-4 rounded border-zinc-700 bg-black text-primary-600 focus:ring-primary-500"
                 />
                 <span>Remember this device</span>
               </label>
@@ -155,9 +155,9 @@ export default function LoginPage() {
               Sign In
             </Button>
 
-            <div className="pt-4 border-t border-slate-800/80 text-center text-xs text-slate-400">
+            <div className="pt-4 border-t border-white/[0.06] text-center text-xs text-zinc-400">
               Don&apos;t have an account?{' '}
-              <Link href="/register" className="text-primary-400 hover:text-primary-300 font-semibold">
+              <Link href="/register" className="text-primary-300 hover:text-primary-200 font-semibold">
                 Create one now
               </Link>
             </div>

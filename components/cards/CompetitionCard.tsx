@@ -23,22 +23,22 @@ export const CompetitionCard: React.FC<CompetitionCardProps> = ({ competition, c
   const daysLeft = getDaysLeft(competition.timeline.submissionDeadline);
 
   return (
-    <div className="group relative bg-slate-900/90 rounded-2xl border border-slate-800/90 overflow-hidden hover:border-slate-700 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-300 flex flex-col justify-between">
+    <div className="group relative bg-[#09090b]/95 rounded-3xl border border-white/[0.08] overflow-hidden hover:border-white/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-all duration-300 flex flex-col justify-between backdrop-blur-xl">
       <div>
         {/* Cover Image */}
-        <div className="relative h-52 w-full overflow-hidden bg-slate-950">
+        <div className="relative h-52 w-full overflow-hidden bg-black">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={competition.coverImage}
             alt={competition.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent" />
 
           {/* Status & Prize Pool Badges */}
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
             <CompetitionStatusBadge status={competition.status} />
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/90 text-slate-950 font-bold text-xs shadow-lg backdrop-blur-md">
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-black font-extrabold text-xs shadow-xl backdrop-blur-md">
               <Trophy className="w-3.5 h-3.5" />
               <span>{competition.prizePool}</span>
             </div>
@@ -52,7 +52,7 @@ export const CompetitionCard: React.FC<CompetitionCardProps> = ({ competition, c
               alt={competition.tenantName}
               className="w-6 h-6 rounded-md object-cover ring-1 ring-white/20"
             />
-            <span className="text-xs font-medium text-slate-200 drop-shadow-md">
+            <span className="text-xs font-medium text-white/90 drop-shadow-md">
               {competition.tenantName}
             </span>
           </div>
@@ -60,9 +60,9 @@ export const CompetitionCard: React.FC<CompetitionCardProps> = ({ competition, c
 
         {/* Content Body */}
         <div className="p-5 space-y-3">
-          <div className="flex items-center justify-between text-xs text-primary-400 font-medium">
+          <div className="flex items-center justify-between text-xs text-primary-300 font-medium">
             <span>{competition.category}</span>
-            <div className="flex items-center gap-1 text-slate-400">
+            <div className="flex items-center gap-1 text-zinc-400">
               <Clock className="w-3.5 h-3.5" />
               <span>{daysLeft.text}</span>
             </div>
@@ -72,18 +72,18 @@ export const CompetitionCard: React.FC<CompetitionCardProps> = ({ competition, c
             {competition.title}
           </h3>
 
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
             {competition.shortDescription}
           </p>
 
           {/* Stats Bar */}
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/80 text-xs">
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Users className="w-3.5 h-3.5 text-slate-500" />
+          <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/[0.06] text-xs">
+            <div className="flex items-center gap-1.5 text-zinc-300">
+              <Users className="w-3.5 h-3.5 text-zinc-500" />
               <span>{competition.submissionCount.toLocaleString()} entries</span>
             </div>
-            <div className="flex items-center justify-end text-slate-300">
-              <span className="text-[11px] text-slate-400 font-mono">1 photo / user</span>
+            <div className="flex items-center justify-end text-zinc-400">
+              <span className="text-[11px] font-mono">1 photo / entrant</span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export const CompetitionCard: React.FC<CompetitionCardProps> = ({ competition, c
       <div className="p-5 pt-0">
         {existingSubmission ? (
           <div className="space-y-2">
-            <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20">
+            <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
               <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
               <span>Submission Already Made</span>
             </div>

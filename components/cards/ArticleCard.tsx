@@ -12,8 +12,8 @@ interface ArticleCardProps {
 export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = false }) => {
   if (featured) {
     return (
-      <div className="group relative bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden grid grid-cols-1 lg:grid-cols-2 hover:border-slate-700 transition-all duration-300">
-        <div className="relative h-64 lg:h-full w-full overflow-hidden bg-slate-950">
+      <div className="group relative bg-[#09090b]/95 rounded-3xl border border-white/[0.08] overflow-hidden grid grid-cols-1 lg:grid-cols-2 hover:border-white/20 transition-all duration-300 backdrop-blur-xl shadow-2xl">
+        <div className="relative h-64 lg:h-full w-full overflow-hidden bg-black">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={article.coverImage}
@@ -29,8 +29,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
 
         <div className="p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-3">
-            <div className="flex items-center gap-3 text-xs text-slate-400">
-              <span className="text-primary-400 font-semibold">{article.category}</span>
+            <div className="flex items-center gap-3 text-xs text-zinc-400">
+              <span className="text-primary-300 font-semibold">{article.category}</span>
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
@@ -42,12 +42,12 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
               {article.title}
             </h3>
 
-            <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
+            <p className="text-sm text-zinc-400 leading-relaxed line-clamp-3">
               {article.excerpt}
             </p>
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -57,7 +57,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
               />
               <div>
                 <p className="text-xs font-bold text-white">{article.author.name}</p>
-                <p className="text-[10px] text-slate-400">{article.author.role}</p>
+                <p className="text-[10px] text-zinc-400">{article.author.role}</p>
               </div>
             </div>
 
@@ -75,9 +75,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
   }
 
   return (
-    <div className="group relative bg-slate-900/80 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between">
+    <div className="group relative bg-[#09090b]/90 rounded-3xl border border-white/[0.08] overflow-hidden hover:border-white/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-all duration-300 flex flex-col justify-between backdrop-blur-xl">
       <div>
-        <div className="relative h-48 w-full overflow-hidden bg-slate-950">
+        <div className="relative h-48 w-full overflow-hidden bg-black">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={article.coverImage}
@@ -85,14 +85,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute top-3 left-3">
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-950/80 text-primary-300 border border-white/10 backdrop-blur-md">
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/80 text-primary-300 border border-white/10 backdrop-blur-md">
               {article.category}
             </span>
           </div>
         </div>
 
         <div className="p-5 space-y-2.5">
-          <div className="flex items-center gap-2 text-[11px] text-slate-400">
+          <div className="flex items-center gap-2 text-[11px] text-zinc-400">
             <span className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
               {formatDate(article.publishedAt)}
@@ -108,13 +108,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
             {article.title}
           </h3>
 
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
             {article.excerpt}
           </p>
         </div>
       </div>
 
-      <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-800/60 mt-4">
+      <div className="p-5 pt-0 flex items-center justify-between border-t border-white/[0.06] mt-4">
         <div className="flex items-center gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -122,7 +122,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
             alt={article.author.name}
             className="w-6 h-6 rounded-full object-cover"
           />
-          <span className="text-xs text-slate-300 font-medium truncate max-w-[130px]">
+          <span className="text-xs text-zinc-300 font-medium truncate max-w-[130px]">
             {article.author.name}
           </span>
         </div>
