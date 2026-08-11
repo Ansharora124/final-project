@@ -1,18 +1,27 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ToastProvider } from '@/components/ui/ToastContext';
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-display',
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-sans',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500', '600'],
 });
 
 export const metadata: Metadata = {
@@ -35,8 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${outfit.variable}`}>
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased font-sans flex flex-col selection:bg-primary-500 selection:text-white">
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="min-h-screen bg-black text-slate-100 antialiased font-sans flex flex-col selection:bg-primary-500 selection:text-white">
         <ToastProvider>
           {children}
         </ToastProvider>

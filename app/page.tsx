@@ -109,19 +109,19 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
-              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">50+</p>
+              <p className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">50+</p>
               <p className="text-xs text-zinc-400 font-medium">Global Competitions</p>
             </div>
             <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
-              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-primary-300 tracking-tight">12,000+</p>
+              <p className="text-3xl sm:text-4xl font-bold font-display text-primary-300 tracking-tight">12,000+</p>
               <p className="text-xs text-zinc-400 font-medium">Verified Photographers</p>
             </div>
             <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
-              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 tracking-tight">38,000+</p>
+              <p className="text-3xl sm:text-4xl font-bold font-display text-amber-400 tracking-tight">38,000+</p>
               <p className="text-xs text-zinc-400 font-medium">Curated Submissions</p>
             </div>
             <div className="p-5 rounded-3xl bg-[#09090b] border border-white/[0.08] space-y-1">
-              <p className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 tracking-tight">150+</p>
+              <p className="text-3xl sm:text-4xl font-bold font-display text-emerald-400 tracking-tight">150+</p>
               <p className="text-xs text-zinc-400 font-medium">International Jurors</p>
             </div>
           </div>

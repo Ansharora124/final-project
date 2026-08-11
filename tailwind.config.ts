@@ -91,8 +91,19 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-outfit)", "sans-serif"],
+        sans: ["var(--font-sans)", "var(--font-display)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+      },
+      letterSpacing: {
+        tighter: "-0.04em",
+        tight: "-0.025em",
+        snug: "-0.015em",
+        normal: "0em",
+        wide: "0.025em",
+        wider: "0.08em",
+        widest: "0.16em",
+        mega: "0.22em",
       },
       boxShadow: {
         'glow': '0 0 45px -5px rgba(99, 102, 241, 0.35)',

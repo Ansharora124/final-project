@@ -53,11 +53,59 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-black text-white antialiased selection:bg-primary-500 selection:text-white;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01", "ss02", "tnum", "zero";
     background-color: #000000;
+    letter-spacing: -0.01em;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Modern Minimalist Sans-Serif Typography Utilities */
+.font-display {
+  font-family: var(--font-display), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+.tracking-minimal-tight {
+  letter-spacing: -0.035em;
+}
+
+.tracking-minimal-snug {
+  letter-spacing: -0.02em;
+}
+
+.tracking-minimal-wide {
+  letter-spacing: 0.16em;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 
 /* Luxury Black Glassmorphism Styles */
