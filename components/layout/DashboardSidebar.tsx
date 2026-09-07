@@ -21,6 +21,7 @@ import { CURRENT_USER } from '@/lib/mock-data';
 
 const NAV_ITEMS = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
+  { label: 'Photo Judging', href: '/judge/photos', icon: Camera },
   { label: 'My Competitions', href: '/dashboard/competitions', icon: Trophy },
   { label: 'My Submissions', href: '/dashboard/submissions', icon: UploadCloud },
   { label: 'Notifications', href: '/dashboard/notifications', icon: Bell, badge: '2' },
@@ -43,6 +44,8 @@ export const DashboardSidebar: React.FC = () => {
         </Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={isOpen}
           className="p-2 rounded-xl bg-[#09090b] border border-white/[0.08] text-zinc-300 hover:text-white"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -52,7 +55,7 @@ export const DashboardSidebar: React.FC = () => {
       {/* Sidebar Container */}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-40 w-64 bg-black border-r border-white/[0.08] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:h-screen',
+          'fixed inset-y-0 left-0 z-40 w-64 bg-[#100e15] border-r border-white/[0.06] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen lg:shrink-0',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
@@ -93,7 +96,7 @@ export const DashboardSidebar: React.FC = () => {
                   className={cn(
                     'flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-medium transition-all group',
                     isActive
-                      ? 'bg-emerald-500/15 text-emerald-300 font-semibold border border-emerald-500/30'
+                      ? 'bg-[#d6f58c]/10 text-[#d6f58c] font-semibold border border-[#d6f58c]/20'
                       : 'text-zinc-400 hover:text-white hover:bg-[#09090b]'
                   )}
                 >
@@ -101,7 +104,7 @@ export const DashboardSidebar: React.FC = () => {
                     <Icon
                       className={cn(
                         'w-4 h-4 transition-colors',
-                        isActive ? 'text-emerald-400' : 'text-zinc-400 group-hover:text-zinc-200'
+                        isActive ? 'text-[#d6f58c]' : 'text-zinc-400 group-hover:text-zinc-200'
                       )}
                     />
                     <span>{item.label}</span>

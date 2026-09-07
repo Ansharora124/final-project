@@ -21,6 +21,7 @@ import { MOCK_JUDGES } from '@/lib/mock-data';
 const judge = MOCK_JUDGES[0]; // Elena Rostova
 
 const NAV_ITEMS = [
+  { label: 'Photo Judging', href: '/judge/photos', icon: Camera },
   { label: 'Overview', href: '/judge', icon: Layers },
   { label: 'Assigned Competitions', href: '/judge/competitions', icon: Award },
   { label: 'Review Queue', href: '/judge/review', icon: Clock, badge: '6' },

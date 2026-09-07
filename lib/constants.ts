@@ -1,4 +1,5 @@
 import { ScoreCriterion } from './types';
+import { CRITERIA } from './judging/rubric';
 
 export const APP_NAME = 'Pixel-Prize';
 export const APP_TAGLINE = 'Capture. Compete. Create History.';
@@ -112,43 +113,10 @@ export const SUBMISSION_STATUS_CONFIG: Record<
   },
 };
 
-export const DEFAULT_SCORING_CRITERIA: ScoreCriterion[] = [
-  {
-    id: 'crit-comp',
-    name: 'Composition & Framing',
-    description: 'Balance, leading lines, rule of thirds or intentional breaking, spatial harmony.',
-    weight: 25,
-    maxScore: 25,
-  },
-  {
-    id: 'crit-creat',
-    name: 'Creativity & Originality',
-    description: 'Unique perspective, visual storytelling, distinctive mood and voice.',
-    weight: 25,
-    maxScore: 25,
-  },
-  {
-    id: 'crit-tech',
-    name: 'Technical Quality & Sharpness',
-    description: 'Focus accuracy, exposure control, depth of field, noise control, dynamic range.',
-    weight: 20,
-    maxScore: 20,
-  },
-  {
-    id: 'crit-theme',
-    name: 'Theme Relevance & Context',
-    description: 'How strongly and authentically the photograph aligns with the competition category.',
-    weight: 20,
-    maxScore: 20,
-  },
-  {
-    id: 'crit-emot',
-    name: 'Emotional Impact & Wow Factor',
-    description: 'The immediate punch, evoke of feeling, memorability, and aesthetic allure.',
-    weight: 10,
-    maxScore: 10,
-  },
-];
+export const DEFAULT_SCORING_CRITERIA: ScoreCriterion[] = CRITERIA.map(criterion => ({
+  id: criterion.id, name: criterion.name, description: criterion.description,
+  weight: criterion.max, maxScore: criterion.max,
+}));
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },

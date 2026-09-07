@@ -36,9 +36,9 @@ export default function JudgeOverviewPage() {
           </p>
         </div>
 
-        <Link href="/judge/review">
+        <Link href="/judge/photos">
           <Button variant="gold" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
-            Start Scoring Queue
+            Open Photo Judging
           </Button>
         </Link>
       </div>

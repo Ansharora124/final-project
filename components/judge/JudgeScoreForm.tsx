@@ -33,18 +33,8 @@ export const JudgeScoreForm: React.FC<JudgeScoreFormProps> = ({
   const { showToast } = useToast();
   const router = useRouter();
 
-  // Scoring state for criteria (default to realistic baseline scores)
-  const [scores, setScores] = useState<Record<string, number>>({
-    'crit-comp': 23,
-    'crit-creat': 24,
-    'crit-tech': 19,
-    'crit-theme': 19,
-    'crit-emot': 9,
-  });
-
-  const [comments, setComments] = useState(
-    'Outstanding depth and textural mastery. The lighting creates a visceral storytelling arc that lingers long after viewing.'
-  );
+  const [scores, setScores] = useState<Record<string, number>>({});
+  const [comments, setComments] = useState('');
   const [isBlindJudging, setIsBlindJudging] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -57,10 +47,12 @@ export const JudgeScoreForm: React.FC<JudgeScoreFormProps> = ({
   };
 
   // Calculate live total
-  const totalScore = Object.values(scores).reduce((acc, curr) => acc + curr, 0);
+  const totalScore = criteria.reduce((sum, criterion) => sum + (scores[criterion.id] ?? 0), 0);
+  const allScored = criteria.every(criterion => scores[criterion.id] !== undefined);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!allScored || !comments.trim()) return;
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -164,13 +156,14 @@ export const JudgeScoreForm: React.FC<JudgeScoreFormProps> = ({
                 <Slider
                   label={item.name}
                   weightLabel={`${item.weight}% weight`}
-                  value={scores[item.id] ?? Math.round(item.maxScore * 0.8)}
+                  value={scores[item.id] ?? 0}
                   max={item.maxScore}
                   min={0}
                   onChange={(val) => handleScoreChange(item.id, val)}
                   disabled={isSubmitted}
                 />
                 <p className="text-xs text-slate-400 mt-2">{item.description}</p>
+                {scores[item.id] === undefined && <button type="button" className="text-xs text-amber-300 mt-2" onClick={() => handleScoreChange(item.id, 0)}>Not yet scored — confirm 0 or adjust the slider</button>}
               </div>
             ))}
           </div>
@@ -223,6 +216,7 @@ export const JudgeScoreForm: React.FC<JudgeScoreFormProps> = ({
               variant="gold"
               size="lg"
               isLoading={isSubmitting}
+              disabled={!allScored || !comments.trim()}
               rightIcon={<Send className="w-4 h-4" />}
             >
               Submit Official Review ({totalScore} pts)
