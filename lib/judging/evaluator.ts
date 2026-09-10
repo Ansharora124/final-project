@@ -24,12 +24,20 @@ export async function prepareImage(bytes: Buffer, mimeType: string) {
 }
 
 export async function evaluateImage(imageUrl: string, apiKey: string, model: string, fetcher: typeof fetch = fetch) {
+  const gemini = model.startsWith('gemini-');
   let response: Response;
   try {
-    response = await fetcher('https://api.openai.com/v1/responses', {
+    response = await fetcher(gemini ? `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent` : 'https://api.openai.com/v1/responses', {
       method: 'POST', signal: AbortSignal.timeout(120_000),
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      headers: gemini ? { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' } : { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(gemini ? {
+        systemInstruction: { parts: [{ text: JUDGING_PROMPT }] },
+        contents: [{ role: 'user', parts: [
+          { text: 'Evaluate this photograph independently using the fixed rubric.' },
+          { inlineData: { mimeType: 'image/png', data: imageUrl.split(',')[1] } },
+        ] }],
+        generationConfig: { temperature: 0, maxOutputTokens: 8192, responseMimeType: 'application/json', responseJsonSchema: EVALUATION_SCHEMA },
+      } : {
         model, store: false, temperature: 0,
         instructions: JUDGING_PROMPT,
         input: [{ role: 'user', content: [{ type: 'input_text', text: 'Evaluate this photograph independently using the fixed rubric.' }, { type: 'input_image', image_url: imageUrl, detail: 'high' }] }],
@@ -41,6 +49,7 @@ export async function evaluateImage(imageUrl: string, apiKey: string, model: str
     throw new EvaluationError('The evaluation connection failed or timed out. This photograph has not been scored. Retry when ready.', 504);
   }
   if (!response.ok) {
+    if (response.status === 503) throw new EvaluationError('The AI model is temporarily unavailable or experiencing high demand. No score was assigned. Please retry later.', 503);
     if (response.status === 429) throw new EvaluationError('The AI service reached its rate or credit limit. Check usage before retrying.', 429);
     if (response.status === 401 || response.status === 403) throw new EvaluationError('The AI service rejected the API credentials. Check the server API key and model access.', 503);
     if (response.status === 400 || response.status === 404) throw new EvaluationError('The AI model configuration was rejected. Check that the configured model supports image input, structured outputs and temperature=0.', 503);
@@ -48,6 +57,13 @@ export async function evaluateImage(imageUrl: string, apiKey: string, model: str
   }
   try {
     const body = await response.json();
+    if (gemini) {
+      const candidate = body.candidates?.[0];
+      if (body.promptFeedback?.blockReason || ['SAFETY', 'RECITATION', 'PROHIBITED_CONTENT', 'IMAGE_SAFETY'].includes(candidate?.finishReason)) throw new EvaluationError('The AI service declined to evaluate this photograph. No score was assigned.', 422);
+      if (candidate?.finishReason !== 'STOP') throw new Error('Incomplete response');
+      const text = (candidate.content?.parts ?? []).filter((part: { thought?: boolean; text?: string }) => !part.thought && typeof part.text === 'string').map((part: { text: string }) => part.text).join('');
+      return validateEvaluation(JSON.parse(text));
+    }
     if (body.status !== 'completed') throw new Error('Incomplete response');
     const content = (body.output ?? []).filter((item: { type: string }) => item.type === 'message').flatMap((item: { content: unknown[] }) => item.content ?? []);
     if (content.some((item: { type: string }) => item.type === 'refusal')) throw new EvaluationError('The AI service declined to evaluate this photograph. No score was assigned.', 422);

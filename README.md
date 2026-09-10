@@ -5,11 +5,11 @@ The working photo collection is at **http://localhost:3000/judge/photos**, linke
 ## Run locally
 
 1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env.local`. Set `OPENAI_API_KEY` to your own API key. Never put it in a `NEXT_PUBLIC_` variable or commit it.
+2. Copy `.env.example` to `.env.local`. Set `GEMINI_API_KEY` to your own API key. Never put it in a `NEXT_PUBLIC_` variable or commit it.
 3. Run `npm run dev -- --hostname 127.0.0.1` and open the URL above.
 4. Add photographs now or later. Click **Evaluate photos** when ready. Without an API key, uploads, browsing, persistence and exports remain available; automatic judging is disabled with a setup message.
 
-The default is the fixed `gpt-4o-2024-08-06` snapshot. `OPENAI_JUDGING_MODEL` may specify another accessible model that supports image input, strict structured output and `temperature: 0`. Restart after configuration changes. Do not change the model or rubric halfway through a collection: the application prevents mixing saved results from different settings.
+With GEMINI_API_KEY configured, the default model is gemini-3.8-flash; GEMINI_JUDGING_MODEL selects another accessible Gemini vision model. The legacy gemenie_API_KEY spelling is also accepted. OpenAI remains a fallback when only OPENAI_API_KEY is set. Restart after configuration changes. Do not change the model or rubric halfway through a collection: the application prevents mixing saved results from different settings.
 
 ## Implemented workflow
 
@@ -17,7 +17,7 @@ The default is the fixed `gpt-4o-2024-08-06` snapshot. `OPENAI_JUDGING_MODEL` ma
 - Sequential evaluations, individual retry, progress and pause after the current photo. Keep the page open; this is not a background job service. Results are saved after each photo, so refreshing resumes from saved progress. An interrupted request can still incur provider usage; retry may incur another charge.
 - Original uploads and results persist in IndexedDB on this browser and origin. Browser data deletion removes them. They do not sync across devices. Web Locks prevent concurrent writes from multiple tabs. JSON/CSV export includes results and file identifiers, not image files; keep original photos separately.
 - Fixed composition / lighting / technical / creativity / impact maxima of **25 / 20 / 20 / 20 / 15**. Whole-number scores, exact total validation, specific strengths, weaknesses and one improvement. Each evaluation JSON contains only the ten requested fields.
-- Images are decoded, oriented and normalized losslessly to sRGB PNG; EXIF/identity metadata is removed. No filename, caption, other photograph, past score or ranking is sent to the model. Each call uses `store: false`, the same rubric, model snapshot, image detail and temperature. The vision service may internally resize inputs; fine-detail measurements are not guaranteed.
+- Images are decoded, oriented and normalized losslessly to sRGB PNG; EXIF/identity metadata is removed. No filename, caption, other photograph, past score or ranking is sent to the model. Each call is independent and uses the same rubric, configured model and temperature. The vision service may internally resize inputs; fine-detail measurements are not guaranteed.
 - Low-confidence, unassessable photos have **null in all six numeric fields**, never a fabricated zero, and explain the limitation in `shortJudgement`. They are excluded from rankings/statistics. Provider errors remain retryable failed entries without evaluations.
 - Rankings use raw totals and competition ranking for ties (1, 1, 3). Mean, median and population standard deviation exclude unscored/failed entries. Saved scores are not curved or automatically rescored. Ranking is provisional while entries remain unevaluated. A fixed process reduces drift but does not make subjective AI judgments perfectly deterministic or objective.
 - Individual JSON downloads contain only the requested evaluation. Collection JSON wraps evaluation objects with entry IDs, filenames, timestamps, status, model, rubric and rank for auditing. CSV protects against formula injection and preserves blank missing scores.

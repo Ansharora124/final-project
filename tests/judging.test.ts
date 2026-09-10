@@ -95,6 +95,25 @@ test('provider refusal, malformed totals, incomplete results, rate limits and ne
   await assert.rejects(() => evaluateImage('fixture', 'test-key', 'test-model', async () => { throw new Error('network'); }));
 });
 
+test('Gemini sends the image and strict schema only to Google and validates its response', async () => {
+  const fakeFetch: typeof fetch = async (url, init) => {
+    assert.equal(url, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent');
+    assert.equal(new Headers(init!.headers).get('x-goog-api-key'), 'test-key');
+    assert.equal(new Headers(init!.headers).has('authorization'), false);
+    const body = JSON.parse(init!.body as string);
+    assert.equal(body.contents.length, 1);
+    assert.deepEqual(body.contents[0].parts[1].inlineData, { mimeType: 'image/png', data: 'fixture' });
+    assert.deepEqual(body.generationConfig.responseJsonSchema.required, EVALUATION_KEYS);
+    return Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ thought: true, text: 'Do not parse reasoning' }, { text: JSON.stringify(valid) }] } }] });
+  };
+  assert.deepEqual(await evaluateImage('data:image/png;base64,fixture', 'test-key', 'gemini-3.8-flash', fakeFetch), valid);
+  for (const body of [
+    { promptFeedback: { blockReason: 'SAFETY' } },
+    { candidates: [{ finishReason: 'MAX_TOKENS' }] },
+    { candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify({ ...valid, finalScore: 100 }) }] } }] },
+  ]) await assert.rejects(() => evaluateImage('data:image/png;base64,fixture', 'test-key', 'gemini-3.8-flash', async () => Response.json(body)));
+});
+
 test('API reports missing configuration without exposing secrets and rejects outside origins', async () => {
   const key = process.env.OPENAI_API_KEY;
   delete process.env.OPENAI_API_KEY;
@@ -138,5 +157,26 @@ test('API upload decodes a photo and returns only validated fields with model pr
     globalThis.fetch = previousFetch;
     if (previousKey === undefined) delete process.env.OPENAI_API_KEY;
     else process.env.OPENAI_API_KEY = previousKey;
+  }
+});
+
+test('Gemini configuration takes priority without exposing the key', () => {
+  const previous = process.env.GEMINI_API_KEY;
+  const previousModel = process.env.GEMINI_JUDGING_MODEL;
+  process.env.GEMINI_API_KEY = 'test-gemini-secret';
+  delete process.env.GEMINI_JUDGING_MODEL;
+  try {
+    return GET().json().then(config => {
+      assert.equal(config.configured, true);
+      assert.equal(config.model, 'gemini-3.8-flash');
+      assert.doesNotMatch(JSON.stringify(config), /test-gemini-secret/);
+    }).finally(() => {
+      if (previous === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = previous;
+      if (previousModel === undefined) delete process.env.GEMINI_JUDGING_MODEL; else process.env.GEMINI_JUDGING_MODEL = previousModel;
+    });
+  } catch (error) {
+    if (previous === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = previous;
+    if (previousModel === undefined) delete process.env.GEMINI_JUDGING_MODEL; else process.env.GEMINI_JUDGING_MODEL = previousModel;
+    throw error;
   }
 });

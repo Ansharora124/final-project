@@ -107,7 +107,7 @@ export default function PhotoJudgingPage() {
   async function evaluate(onlyId?: string) {
     await exclusive(async fresh => {
       const config = await refreshConfiguration();
-      if (!config.configured) throw new Error('Add OPENAI_API_KEY to .env.local on the server and restart the app to enable automatic judging.');
+      if (!config.configured) throw new Error('Add GEMINI_API_KEY to .env.local on the server and restart the app to enable automatic judging.');
       if (fresh.some(entry => entry.evaluation && (entry.model !== config.model || entry.rubricVersion !== config.rubricVersion))) throw new Error('The saved results use different judging settings. Restore their model and rubric before continuing this collection.');
       const queue = fresh.filter(entry => !entry.evaluation && (!onlyId || entry.id === onlyId));
       if (!queue.length) { setNotice('There are no pending photographs to evaluate.'); return; }
@@ -171,7 +171,7 @@ export default function PhotoJudgingPage() {
 
     {configuration && !configuration.configured && <div className="rounded-xl border border-amber-500/25 bg-amber-500/10 p-4 text-sm text-amber-100">
       <strong>Photo uploads are ready. Automatic judging needs setup.</strong>
-      <p className="mt-1 text-amber-100/75">Add your OpenAI API key as <code>OPENAI_API_KEY</code> in <code>.env.local</code>, then restart the app. Your key stays on the server.</p>
+      <p className="mt-1 text-amber-100/75">Add your Gemini API key as <code>GEMINI_API_KEY</code> in <code>.env.local</code>, then restart the app. Your key stays on the server.</p>
       <button className="mt-2 underline underline-offset-4" disabled={busy} onClick={() => refreshConfiguration().catch(error => setNotice(error.message))}>Check connection again</button>
     </div>}
     {notice && <div role="status" aria-live="polite" className="rounded-xl border border-white/15 bg-zinc-900 p-4 text-sm text-zinc-200 break-words">{notice}</div>}
@@ -192,7 +192,7 @@ export default function PhotoJudgingPage() {
         </div>
       </div>
       <p className="mt-4 text-sm text-zinc-300">Just testing? Choose <strong>Test one photo</strong>, then click <strong>Evaluate photo</strong> on its preview. Only that image will be reviewed.</p>
-      <p className="mt-2 text-xs text-zinc-500">Photos and results save in this browser. Export results for a separate copy. Evaluation sends each photo to OpenAI and uses your API account. Keep this page open while the queue runs.</p>
+      <p className="mt-2 text-xs text-zinc-500">Photos and results save in this browser. Export results for a separate copy. Evaluation sends each photo to {configuration?.model.startsWith('gemini-') ? 'Google Gemini' : 'the configured AI service'} and uses your API account. Keep this page open while the queue runs.</p>
       {running && <div className="mt-4 space-y-2" role="status"><p className="text-xs text-amber-300">Evaluating {selected ? label(selected) : 'photograph'} · {done} of {entries.length} reviewed</p><progress aria-label="Review progress" max={entries.length} value={done} className="h-1.5 w-full accent-amber-400" /></div>}
     </section>
 
